@@ -1,0 +1,17 @@
+default: &default
+  adapter: sqlserver
+  encoding: utf8
+  host: 172.30.34.29
+  database: "[PdMParts2.0]"
+  username: skfuser6
+  password: temp123
+  azure: false # set to true if you're connecting to Azure SQL Database
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

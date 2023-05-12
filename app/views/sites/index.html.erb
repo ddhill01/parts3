@@ -1,0 +1,63 @@
+<h1>Site Selection</h1>
+
+<%= form_with(model: @site, local: true) do |form| %>
+  <%= form.label :Site%>
+  <%= form.select :SiteLongName, options_for_select(@sites.map { |site| [site.SiteLongName, site.SiteID] }), {}, class: "site-select" %>
+
+
+  <div class="form-group">
+    <%= form.label :Area %>
+    <%= form.select :SiteArea , {}, {}, class: "site-area-select" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :Room %>
+    <%= form.select :SiteRoom, {}, {}, class: "site-room-select" %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
+
+<script>
+  $(function() {
+    $(".site-select").on("change", function() {
+      var site_id = $(this).val();
+      
+      $.ajax({
+        type: "GET",
+        url: "/sites/site_areas_by_site",
+        data: { site_id: site_id },
+        dataType: "json",
+        success: function (data) {
+          var options = "";
+          data.forEach(function(site_area) {
+            options += "<option value='" + site_area.SiteAreaID + "'>" + site_area.AreaCommonName + "</option>";
+          });
+          $(".site-area-select").html(options);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  $(function() {
+    $(".site-area-select").on("change", function() {
+      var siteAreaId = $(this).val();
+      
+      $.ajax({
+        url: "site_areas/site_rooms_by_area",
+        type: "GET",
+        data: {site_area_id: siteAreaId},
+        success: function(data) {
+          var options = "";
+          data.forEach(function(site_room) {
+            options += "<option value='" + site_room.SiteRoomId + "'>" + site_room.RoomCommonName + "</option>";
+          });
+          $(".site-room-select").html(options);
+        }
+      });
+    });
+  });
+</script>
+

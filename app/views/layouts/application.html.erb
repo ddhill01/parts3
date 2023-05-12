@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<%= render partial: 'layouts/menus/menu_bar' %>
+
+<html>
+  <head>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Parts31</title>
+     <!-- include the Roboto font from Google Fonts -->
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+     <!-- set the font-family property for the body element -->
+     <style>
+     body {
+      font-family: 'Roboto', sans-serif;
+     }
+  </style>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <body style="padding-top: 50px;"> <!-- Change 50px to the desired padding value -->
+    <%= yield %>
+  </body>
