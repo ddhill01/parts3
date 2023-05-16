@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :site_rooms do
-    get :room_assets_by_room, on: :collection
+    get :assets_by_room, on: :collection
   end
 
   get '/sites', to: 'sites#index'

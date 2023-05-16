@@ -10,7 +10,7 @@
     <%= form.select :SiteArea , {}, {}, class: "site-area-select" %>
   </div>
 
-  <div class="form-group">
+ <div class="form-group">
     <%= form.label :Room %>
     <%= form.select :SiteRoom, {}, {}, class: "site-room-select" %>
   </div>
@@ -44,15 +44,15 @@
   $(function() {
     $(".site-area-select").on("change", function() {
       var siteAreaId = $(this).val();
-      
+      console.log("Selected Site Area ID:", siteAreaId); 
       $.ajax({
-        url: "site_areas/site_rooms_by_area",
+        url: "/site_areas/site_rooms_by_area",
         type: "GET",
-        data: {site_area_id: siteAreaId},
+        data: { site_area_id: siteAreaId },
         success: function(data) {
           var options = "";
           data.forEach(function(site_room) {
-            options += "<option value='" + site_room.SiteRoomId + "'>" + site_room.RoomCommonName + "</option>";
+            options += "<option value='" + site_room.SiteRoomID + "'>" + site_room.RoomCommonName + "</option>";
           });
           $(".site-room-select").html(options);
         }
@@ -61,3 +61,37 @@
   });
 </script>
 
+<script>
+$(function() {
+  $(".site-room-select").on("change", function() {
+    var siteRoomId = $(this).val();
+    console.log("Selected Site Room ID:", siteRoomId); // Add this line to check the value
+    $.ajax({
+      url: "/site_rooms/assets_by_room",
+      type: "GET",
+      data: {site_room_id: siteRoomId},
+
+      dataType: "json",
+      success: function(data) {
+        var tableHTML = "<table>";
+
+        // Generate table headers
+        tableHTML += "<thead><tr><th>Asset ID</th><th>Asset Name</th><th>Vibration Analyzed</th>...</th></tr></thead>";
+
+       // Generate table rows with asset data
+        tableHTML += "<tbody>";
+        data.forEach(function(asset) {
+        tableHTML += "<tr><td>" + asset.AssetID + "</td><td>" + asset.AssetCommonName + "</td><td>" + asset.IsVibrationAnalyzed +"</td><td>...</td></tr>";
+        });
+        tableHTML += "</tbody>";
+
+        tableHTML += "</table>";
+
+        // Update the content of the table container element with the generated HTML
+        $(".table-container").html(tableHTML);
+        }
+      })
+    });
+  });
+</script>
+<div class="table-container"></div>

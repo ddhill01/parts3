@@ -1,0 +1,4 @@
+< Class AssetsController < ApplicationController
+      
+
+end
