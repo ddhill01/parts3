@@ -4,7 +4,6 @@
   <%= form.label :Site%>
   <%= form.select :SiteLongName, options_for_select(@sites.map { |site| [site.SiteLongName, site.SiteID] }), {}, class: "site-select" %>
 
-
   <div class="form-group">
     <%= form.label :Area %>
     <%= form.select :SiteArea , {}, {}, class: "site-area-select" %>
