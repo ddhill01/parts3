@@ -200,6 +200,8 @@ GEM
     ssrf_filter (1.1.1)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.29-x64-mingw-ucrt)
+      railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.2)
     tiny_tds (2.1.5)
@@ -249,6 +251,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  tailwindcss-rails (~> 2.0)
   tiny_tds (~> 2.1, >= 2.1.5)
   turbo-rails
   tzinfo-data
