@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'welcome/index', to: 'welcome#index'
   root "welcome#index"
 
+
   resources :sites do
     get :site_areas_by_site, on: :collection
   end
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
     get :assets_by_room, on: :collection
   end
 
+  resources :vibration_analysis, only: [:new, :create]
+
   get '/sites', to: 'sites#index'
 
   get '/database_poll', to: 'database_poll#index'
@@ -22,6 +25,8 @@ Rails.application.routes.draw do
   get '/screenshot', to: 'screenshot#index'
 
   get '/vibration_analysis', to: 'vibration_analysis#index'
+
+  get '/vibration_menu', to: 'vibration_menu#vibration_index'
 
   # Route the capture action to the screenshot capture module in screenshot controller.
   post 'capture' => 'screenshot#capture'

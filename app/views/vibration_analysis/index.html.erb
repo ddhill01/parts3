@@ -1,3 +1,46 @@
 <%= render partial: 'layouts/menus/menu_bar' %>
 <%= render partial: '/layouts/menus/vibration_menu/vibration_analysis_menu' %>
 
+<%= form_with model: @vibration_analysis, url: "vibration_analysis#index.html", local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :test_date %>
+    <%= form.date_field :test_date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :month %>
+    <%= form.text_field :month, class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= form.label :analyst_name %>
+  <%= form.collection_select :db_user_id, DbUser.all, :id, :name, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :year %>
+    <%= form.number_field :year, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :asset_filter %>
+    <%= form.text_field :asset_filter, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :analysis_result %>
+    <%= form.text_area :analysis_result, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :report_comments %>
+    <%= form.text_area :report_comments, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :severity %>
+    <%= form.text_field :severity, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :recommendations %>
+    <%= form.text_area :recommendations, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :internal_comments %>
+    <%= form.text_area :internal_comments, class: "form-control" %>
+  </div>
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+<% end %>
