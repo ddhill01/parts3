@@ -24,10 +24,10 @@ Rails.application.routes.draw do
 
   get '/screenshot', to: 'screenshot#index'
 
-  get '/vibration_analysis', to: 'vibration_analysis#index'
+  get '/vibration', to: 'vibration_analysis#index'
 
   get '/vibration_menu', to: 'vibration_menu#vibration_index'
-
+ 
   # Route the capture action to the screenshot capture module in screenshot controller.
   post 'capture' => 'screenshot#capture'
 

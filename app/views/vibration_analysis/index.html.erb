@@ -1,46 +1,73 @@
 <%= render partial: 'layouts/menus/menu_bar' %>
 <%= render partial: '/layouts/menus/vibration_menu/vibration_analysis_menu' %>
 
+<div class="jumbotron jumbotron-fluid text-dark">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 offset-md-3 text-center">
+          <h1 class="display-16">Vibration Analysis Entry</h1>
+          <br>
+
+           <hr class="my-4">
+
+      </div>
+    </div>
+  </div>
+</div>
 <%= form_with model: @vibration_analysis, url: "vibration_analysis#index.html", local: true do |form| %>
-  <div class="form-group">
-    <%= form.label :test_date %>
-    <%= form.date_field :test_date, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :month %>
-    <%= form.text_field :month, class: "form-control" %>
-  </div>
-  <div class="form-group">
-  <%= form.label :analyst_name %>
-  <%= form.collection_select :db_user_id, DbUser.all, :id, :name, {}, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :year %>
-    <%= form.number_field :year, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :asset_filter %>
-    <%= form.text_field :asset_filter, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :analysis_result %>
-    <%= form.text_area :analysis_result, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :report_comments %>
-    <%= form.text_area :report_comments, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :severity %>
-    <%= form.text_field :severity, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :recommendations %>
-    <%= form.text_area :recommendations, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :internal_comments %>
-    <%= form.text_area :internal_comments, class: "form-control" %>
-  </div>
-  <%= form.submit "Submit", class: "btn btn-primary" %>
+  <div class="row">
+      
+      <div class="col-md-1">
+        <%= form.label :test_date %>
+        <%= form.date_field :test_date, class: "form-control" %>
+   
+        <div class="form-group">
+        <%= form.label :month %>
+        <%= form.collection_select :cycle_month, CycleMonth.all, :CycleMonthID, :CycleLongMonth, {}, class: "form-control" %>
+        </div>
+        <div class="form-group">
+        <%= form.label :analyst_name %>
+        <%= form.collection_select :db_user_id, DbUser.all, :id, :UserName, {}, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :year %>
+          <%= form.collection_select :cycle_year, CycleYear.all, :CycleYearID, :CycleYear, {}, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class="col-md-2">
+        <div class="form-group">
+        <%= form.label :asset_filter %>
+        <%= form.collection_select :vibration_analysis_asset_type_id, VibrationAnalysisAssetType.all, :VibrationAnalysisAssetTypeID, :VibrationAnalysisAssetTypeDescription, {}, class: "form-control", id: "assetFilterSelect" %>
+        </div>
+        <div class="form-group">
+        <%= form.label :analysis_result %>
+        <%= form.collection_select :vibration_analysis_result_id, VibrationAnalysisResult.all, :VibrationAnalysisResultID, :VibrationAnalysisResult, {}, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class="col-md-3">
+        <div class="form-group">
+        <%= form.label :report_comments %>
+        <%= form.text_area :report_comments, class: "form-control" %>
+        </div>
+        <div class="form-group">
+        <%= form.label :severity %>
+        <%= form.text_field :severity, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="form-group">
+        <%= form.label :recommendations %>
+        <%= form.text_area :recommendations, class: "form-control" %>
+        </div>
+        <div class="form-group">
+        <%= form.label :internal_comments %>
+        <%= form.text_area :internal_comments, class: "form-control" %>
+        <hr class="my-4">
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+        </div>
+   </div>
+  
 <% end %>

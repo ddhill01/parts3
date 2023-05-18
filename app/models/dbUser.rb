@@ -1,4 +1,4 @@
-class dbUser < ApplicationRecord
+class DbUser < ApplicationRecord
      
     self.table_name = "dbo.db_User"
     self.primary_key = "DBUserID"
