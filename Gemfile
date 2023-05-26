@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+#gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -49,17 +49,23 @@ gem "sassc-rails"  #I uncommented this
 # I'm adding these ############################################################################################################################
 gem 'bootstrap'
 gem 'jquery-rails'
-
-
 gem 'win32screenshot', '~> 4.1'
+gem 'schema_to_scaffold'
+gem 'factory_bot_rails'
+gem 'responders'
+
+#Some random thing on the internet told me to add this
+gem 'rspec-rails'
+
+gem 'slim-rails'
 
 # You need this in order to get activerecord to work.
-gem 'tiny_tds', '~> 2.1', '>= 2.1.5'
+gem 'tiny_tds'
 
 # Use CarrierWave for image uploads
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 
-###############################################################################################################################################
+#############################################################################bun##################################################################
 
 # Use ActiveRecord-SQLServer-Adapter to connect to PdM PARTS 
 gem 'activerecord-sqlserver-adapter'
@@ -89,5 +95,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "tailwindcss-rails", "~> 2.0"

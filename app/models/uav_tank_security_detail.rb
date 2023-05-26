@@ -1,0 +1,2 @@
+class UavTankSecurityDetail < ApplicationRecord
+end

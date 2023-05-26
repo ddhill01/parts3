@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  AssetMotorID: 1
+  AlignmentCheckDate: 2023-05-25 12:42:14
+  CheckedBy: 1
+  AsFoundVertAng: 1
+  AsFoundHorizAng: 1
+  AsFoundVertOffset: 1
+  AsFoundHorizOffset: 1
+  IsRepairRequired: false
+
+two:
+  AssetMotorID: 1
+  AlignmentCheckDate: 2023-05-25 12:42:14
+  CheckedBy: 1
+  AsFoundVertAng: 1
+  AsFoundHorizAng: 1
+  AsFoundVertOffset: 1
+  AsFoundHorizOffset: 1
+  IsRepairRequired: false

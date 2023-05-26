@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Ir analyses
+
+#ir_analyses
+  - @ir_analyses.each do |ir_analysis|
+    == render ir_analysis
+    p
+      = link_to "Show this ir analysis", ir_analysis
+
+= link_to "New ir analysis", new_ir_analysis_path

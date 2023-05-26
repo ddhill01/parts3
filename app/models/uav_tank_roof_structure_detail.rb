@@ -1,0 +1,2 @@
+class UavTankRoofStructureDetail < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class AlignRepair < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class VibrationFaultComponent < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class UavTankTopVentDetail < ApplicationRecord
+end

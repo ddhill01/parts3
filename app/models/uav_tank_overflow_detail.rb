@@ -1,0 +1,2 @@
+class UavTankOverflowDetail < ApplicationRecord
+end

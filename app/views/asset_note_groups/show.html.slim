@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @asset_note_group
+
+div
+  => link_to "Edit this asset note group", edit_asset_note_group_path(@asset_note_group)
+  '|
+  =< link_to "Back to asset note groups", asset_note_groups_path
+
+  = button_to "Destroy this asset note group", @asset_note_group, method: :delete

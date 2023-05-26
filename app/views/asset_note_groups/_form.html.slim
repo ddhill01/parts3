@@ -1,0 +1,18 @@
+= form_with(model: @asset_note_group) do |form|
+  - if @asset_note_group.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@asset_note_group.errors.count, "error")} prohibited this asset_note_group from being saved:"
+      ul
+        - @asset_note_group.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :GroupDescription, style: "display: block"
+    = form.text_field :GroupDescription
+
+  div
+    = form.label :GroupNoteText, style: "display: block"
+    = form.text_area :GroupNoteText
+
+  div
+    = form.submit

@@ -1,0 +1,2 @@
+class VibrationRecommendationRank < ApplicationRecord
+end

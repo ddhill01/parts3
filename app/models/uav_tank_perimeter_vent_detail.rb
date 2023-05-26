@@ -1,0 +1,2 @@
+class UavTankPerimeterVentDetail < ApplicationRecord
+end

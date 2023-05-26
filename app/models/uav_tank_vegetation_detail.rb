@@ -1,0 +1,2 @@
+class UavTankVegetationDetail < ApplicationRecord
+end

@@ -5,3 +5,5 @@ import "jquery"
 import "jquery-ujs"
 import "token"
 import "turbolinks"
+
+

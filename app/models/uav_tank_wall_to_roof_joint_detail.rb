@@ -1,0 +1,2 @@
+class UavTankWallToRoofJointDetail < ApplicationRecord
+end

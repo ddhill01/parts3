@@ -1,0 +1,2 @@
+class UavTankRainIncursionDetail < ApplicationRecord
+end

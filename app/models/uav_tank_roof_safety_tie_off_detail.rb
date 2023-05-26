@@ -1,0 +1,2 @@
+class UavTankRoofSafetyTieOffDetail < ApplicationRecord
+end

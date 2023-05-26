@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Asset note groups
+
+#asset_note_groups
+  - @asset_note_groups.each do |asset_note_group|
+    == render asset_note_group
+    p
+      = link_to "Show this asset note group", asset_note_group
+
+= link_to "New asset note group", new_asset_note_group_path

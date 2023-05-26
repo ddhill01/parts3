@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  AlignCheckID: 1
+  AlignmentDate: 2023-05-25 12:45:20
+  AlignedBy: 1
+  AsLeftVertAng: 1
+  AsLeftHorizAng: 1
+  AsLeftVertOffset: 1
+  AsLeftHorizOffset: 1
+  RepairComments: 
+
+two:
+  AlignCheckID: 1
+  AlignmentDate: 2023-05-25 12:45:20
+  AlignedBy: 1
+  AsLeftVertAng: 1
+  AsLeftHorizAng: 1
+  AsLeftVertOffset: 1
+  AsLeftHorizOffset: 1
+  RepairComments: 

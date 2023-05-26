@@ -1,0 +1,154 @@
+= form_with(model: @ir_analysis) do |form|
+  - if @ir_analysis.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@ir_analysis.errors.count, "error")} prohibited this ir_analysis from being saved:"
+      ul
+        - @ir_analysis.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :AssetID, style: "display: block"
+    = form.number_field :AssetID
+
+  div
+    = form.label :AssetBucketID, style: "display: block"
+    = form.number_field :AssetBucketID
+
+  div
+    = form.label :IRFaultID, style: "display: block"
+    = form.number_field :IRFaultID
+
+  div
+    = form.label :dbUserID, style: "display: block"
+    = form.number_field :dbUserID
+
+  div
+    = form.label :IRRepairDescriptionID, style: "display: block"
+    = form.number_field :IRRepairDescriptionID
+
+  div
+    = form.label :IRDefectDecriptionID, style: "display: block"
+    = form.number_field :IRDefectDecriptionID
+
+  div
+    = form.label :DateTested, style: "display: block"
+    = form.datetime_field :DateTested
+
+  div
+    = form.label :DateAnalyzed, style: "display: block"
+    = form.datetime_field :DateAnalyzed
+
+  div
+    = form.label :AnalysisComments, style: "display: block"
+    = form.text_area :AnalysisComments
+
+  div
+    = form.label :InternalComments, style: "display: block"
+    = form.text_area :InternalComments
+
+  div
+    = form.label :IsFlaggedForReview, style: "display: block"
+    = form.check_box :IsFlaggedForReview
+
+  div
+    = form.label :IRComponentID, style: "display: block"
+    = form.number_field :IRComponentID
+
+  div
+    = form.label :IRFaultLocationID, style: "display: block"
+    = form.number_field :IRFaultLocationID
+
+  div
+    = form.label :IRPhaseWireID, style: "display: block"
+    = form.number_field :IRPhaseWireID
+
+  div
+    = form.label :DeltaTinC, style: "display: block"
+    = form.text_field :DeltaTinC
+
+  div
+    = form.label :APhaseAmps, style: "display: block"
+    = form.text_field :APhaseAmps
+
+  div
+    = form.label :BPhaseAmps, style: "display: block"
+    = form.text_field :BPhaseAmps
+
+  div
+    = form.label :CPhaseAmps, style: "display: block"
+    = form.text_field :CPhaseAmps
+
+  div
+    = form.label :Loading, style: "display: block"
+    = form.text_field :Loading
+
+  div
+    = form.label :WasFaultCorrectedByPdM, style: "display: block"
+    = form.check_box :WasFaultCorrectedByPdM
+
+  div
+    = form.label :WORequired, style: "display: block"
+    = form.check_box :WORequired
+
+  div
+    = form.label :WOComplete, style: "display: block"
+    = form.check_box :WOComplete
+
+  div
+    = form.label :WOCreated, style: "display: block"
+    = form.check_box :WOCreated
+
+  div
+    = form.label :WONumber, style: "display: block"
+    = form.text_field :WONumber
+
+  div
+    = form.label :WOPriority, style: "display: block"
+    = form.number_field :WOPriority
+
+  div
+    = form.label :VoltageL12, style: "display: block"
+    = form.text_field :VoltageL12
+
+  div
+    = form.label :VoltageL23, style: "display: block"
+    = form.text_field :VoltageL23
+
+  div
+    = form.label :VoltageL31, style: "display: block"
+    = form.text_field :VoltageL31
+
+  div
+    = form.label :VoltageL1G, style: "display: block"
+    = form.text_field :VoltageL1G
+
+  div
+    = form.label :VoltageL2G, style: "display: block"
+    = form.text_field :VoltageL2G
+
+  div
+    = form.label :VoltageL3G, style: "display: block"
+    = form.text_field :VoltageL3G
+
+  div
+    = form.label :ModifiedDate, style: "display: block"
+    = form.datetime_field :ModifiedDate
+
+  div
+    = form.label :EmailedToPlants, style: "display: block"
+    = form.check_box :EmailedToPlants
+
+  div
+    = form.label :EmailedToPdM, style: "display: block"
+    = form.check_box :EmailedToPdM
+
+  div
+    = form.label :DeltaTinF, style: "display: block"
+    = form.text_field :DeltaTinF
+
+  div
+    = form.label :ReportForReferenceOnly, style: "display: block"
+    = form.check_box :ReportForReferenceOnly
+
+  div
+    = form.submit

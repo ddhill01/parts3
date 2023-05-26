@@ -1,0 +1,2 @@
+class UavTankLightningProtectionDetail < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class UavTankPerimeterFootingDetail < ApplicationRecord
+end

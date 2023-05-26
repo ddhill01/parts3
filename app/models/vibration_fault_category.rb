@@ -1,0 +1,2 @@
+class VibrationFaultCategory < ApplicationRecord
+end

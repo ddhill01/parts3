@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @ir_analysis
+
+div
+  => link_to "Edit this ir analysis", edit_ir_analysis_path(@ir_analysis)
+  '|
+  =< link_to "Back to ir analyses", ir_analyses_path
+
+  = button_to "Destroy this ir analysis", @ir_analysis, method: :delete
