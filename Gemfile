@@ -56,7 +56,6 @@ gem 'responders'
 
 #Some random thing on the internet told me to add this
 gem 'rspec-rails'
-
 gem 'slim-rails'
 
 # You need this in order to get activerecord to work.
