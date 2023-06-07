@@ -1,132 +1,87 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h1 class="text-center">Site Selection</h1>
-
+      <h1 class="text-center">Vibration Asset Selection</h1>
       <%= form_with(model: @site, local: true) do |form| %>
-        <div class="form-group">
-          <%= form.label :Site %>
-          <%= form.select :SiteLongName, options_for_select(@sites.map { |site| [site.SiteLongName, site.SiteID] }), {}, class: "form-control site-select" %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :Area %>
-          <%= form.select :SiteArea, {}, {}, class: "form-control site-area-select" %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :Room %>
-          <%= form.select :SiteRoom, {}, {}, class: "form-control site-room-select" %>
-        </div>
-
-        <%= form.submit "Submit", class: "btn btn-primary" %>
+        <%= render partial: '/shared/selection_header', locals: { form: form } %>
       <% end %>
     </div>
   </div>
 
-  <style>
+  <style>sar
     .table-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
 
-    .action-buttons {
-      position: relative;
-    }
+.action-buttons {
+  position: relative;
+}
 
-    .action-button {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-30%, -50%);
-      z-index: 1;
-    }
+.action-button {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
 
-    .action-buttons:hover .action-button {
-      display: block;
-    }
+.action-buttons:hover .action-button {
+  display: block;
+}
 
-    .action-button.analyze-button {
-      background-color: #007bff;
-      color: #fff;
-      padding: 5px 10px;
-      border: none;
-      cursor: pointer;
-    }
+.action-button.analyze-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  margin-right: 50px; /* Add some spacing between the buttons */
+}
 
-    .action-button.view-button {
-      background-color: #28a745;
-      color: #fff;
-      padding: 5px 10px;
-      border: none;
-      cursor: pointer;
-    }
+.action-button.view-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
 
-    .action-button.analyze-button:hover,
-    .action-button.view-button:hover {
-      background-color: #0056b3;
-    }
+.action-button.analyze-button:hover,
+.action-button.view-button:hover {
+  background-color: #0056b3;
+}
 
-    .action-button-title {
-      display: none;
-      position: absolute;
-      top: -25px;
-      left: 50%;
-      transform: translateX(-90%);
-      background-color: #fff;
-      color: #000;
-      padding: 5px;
-      font-weight: bold;
-      border-radius: 105px;
-      z-index: 2;
-    }
+.action-button-title {
+  display: none;
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-150%);
+  background-color: #fff;
+  color: #000;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 105px;
+  z-index: 2;
+}
 
-    .action-buttons:hover .action-button-title {
-      display: block;
-    }
+.action-buttons:hover .action-button-title {
+  display: block;
+}
+
   </style>
+  
+  <script src="/assets/cascading_dropdowns.js"></script>
 
   <script>
-    $(function() {
-      $(".site-select").on("change", function() {
-        var site_id = $(this).val();
-
-        $.ajax({
-          type: "GET",
-          url: "/sites/site_areas_by_site",
-          data: { site_id: site_id },
-          dataType: "json",
-          success: function (data) {
-            var options = "";
-            data.forEach(function(site_area) {
-              options += "<option value='" + site_area.SiteAreaID + "'>" + site_area.AreaCommonName + "</option>";
-            });
-            $(".site-area-select").html(options);
-          }
-        });
-      });
-    });
+    const ASSET_FILTER = "IsVibrationAnalyzed";
+    console.log(ASSET_FILTER);
 
     $(function() {
-      $(".site-area-select").on("change", function() {
-        var siteAreaId = $(this).val();
-                console.log("Selected Site Area ID:", siteAreaId);
-        $.ajax({
-          url: "/site_areas/site_rooms_by_area",
-          type: "GET",
-          data: { site_area_id: siteAreaId },
-          success: function(data) {
-            var options = "";
-            data.forEach(function(site_room) {
-              options += "<option value='" + site_room.SiteRoomID + "'>" + site_room.RoomCommonName + "</option>";
-            });
-            $(".site-room-select").html(options);
-          }
-        });
-      });
+      const cascadingDropdowns = new CascadingDropdowns(ASSET_FILTER, true);
     });
 
     $(function() {
@@ -139,57 +94,71 @@
           data: { site_room_id: siteRoomId },
           dataType: "json",
           success: function(data) {
-            var tableHTML = "<table>";
+            var filteredData = filterAndSortAssets(data);
 
-            // Generate table headers
-            tableHTML += "<thead><tr><th>Asset ID</th><th>Asset Name</th><th>Vibration Analyzed</th><th>Actions</th></tr></thead>";
+            var tableHTML = generateTableHTML(filteredData);
 
-            // Generate table rows with asset data
-            tableHTML += "<tbody>";
-            data.forEach(function(asset) {
-              tableHTML += "<tr>";
-              tableHTML += "<td>" + asset.AssetID + "</td>";
-              tableHTML += "<td>" + asset.AssetCommonName + "</td>";
-              tableHTML += "<td>" + asset.IsVibrationAnalyzed + "</td>";
-              tableHTML += "<td class='action-buttons'>";
-              tableHTML += "<button class='action-button analyze-button'></button>";
-              tableHTML += "<div class='action-button-title'>Analyze</div>";
-              tableHTML += "<button class='action-button view-button'></button>";
-              tableHTML += "<div class='action-button-title'>View</div>";
-              tableHTML += "</td>";
-              tableHTML += "</tr>";
-            });
-            tableHTML += "</tbody>";
-
-            tableHTML += "</table>";
-
-            // Update the content of the table container element with the generated HTML
             $(".table-container").html(tableHTML);
 
-            // Add event listener to analyze buttons
-            $(".analyze-button").on("click", function() {
-              // Get the corresponding asset data for the clicked row
-              var assetId = $(this).closest("tr").find("td:first-child").text();
-              var assetName = $(this).closest("tr").find("td:nth-child(2)").text();
-
-              // Perform the desired analyze action for the asset
-              console.log("Analyze Asset:", assetId, assetName);
-              // Add your analyze functionality here
-            });
-
-            // Add event listener to view buttons
-            $(".view-button").on("click", function() {
-              // Get the corresponding asset data for the clicked row
-              var assetId = $(this).closest("tr").find("td:first-child").text();
-              var assetName = $(this).closest("tr").find("td:nth-child(2)").text();
-
-              // Perform the desired view action for the asset
-              console.log("View Asset:", assetId, assetName);
-              // Add your view functionality here
-            });
-          }
+            addEventListenersToButtons();
+          },
         });
       });
+
+      function filterAndSortAssets(data) {
+        var filteredData = data.filter(function(asset) {
+          return asset[ASSET_FILTER] === true;
+        });
+
+        filteredData.sort(function(a, b) {
+          return a.AssetRouteSequence - b.AssetRouteSequence;
+        });
+
+        return filteredData;
+      }
+
+      function generateTableHTML(data) {
+        var tableHTML = "<table>";
+
+        tableHTML += "<thead><tr><th>Asset ID</th><th>Asset Name</th><th>Actions</th></tr></thead>";
+        tableHTML += "<tbody>";
+
+        data.forEach(function(asset) {
+          tableHTML += "<tr>";
+          tableHTML += "<td>" + asset.AssetID + "</td>";
+          tableHTML += "<td>" + asset.AssetCommonName + "</td>";
+          tableHTML += "<td class='action-buttons'>";
+          tableHTML += "<button class='action-button analyze-button'></button>";
+          tableHTML += "<div class='action-button-title'>Analyze</div>";
+          tableHTML += "<button class='action-button view-button'></button>";
+          tableHTML += "<div class='action-button-title'>View</div>";
+          tableHTML += "</td>";
+          tableHTML += "</tr>";
+        });
+
+        tableHTML += "</tbody>";
+        tableHTML += "</table>";
+
+        return tableHTML;
+      }
+
+      function addEventListenersToButtons() {
+        $(".analyze-button").on("click", function() {
+          var assetId = $(this).closest("tr").find("td:first-child").text();
+          var assetName = $(this).closest("tr").find("td:nth-child(2)").text();
+
+          console.log("Analyze Asset:", assetId, assetName);
+          // Add your analyze functionality here
+        });
+
+        $(".view-button").on("click", function() {
+          var assetId = $(this).closest("tr").find("td:first-child").text();
+          var assetName = $(this).closest("tr").find("td:nth-child(2)").text();
+
+          console.log("View Asset:", assetId, assetName);
+          // Add your view functionality here
+        });
+      }
     });
   </script>
 

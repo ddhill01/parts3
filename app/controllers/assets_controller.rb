@@ -1,5 +1,5 @@
 class AssetsController < ApplicationController
-    def def index
+    def index
     end      
 
 end

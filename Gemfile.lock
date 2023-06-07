@@ -302,6 +302,7 @@ DEPENDENCIES
   carrierwave (>= 3.0.0.beta, < 4.0)
   debug
   factory_bot_rails
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   jquery-rails
